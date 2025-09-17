@@ -55,6 +55,13 @@
             flex-wrap: wrap;
         }
 
+        .input-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
         .input-group input {
             padding: 15px 20px;
             border: 2px solid #e0e0e0;
@@ -62,12 +69,55 @@
             font-size: 16px;
             min-width: 300px;
             transition: all 0.3s ease;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
 
         .input-group input:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .input-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-1px);
+        }
+
+        .remember-section {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .remember-checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
         }
 
         .btn {
@@ -90,6 +140,18 @@
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+            font-size: 14px;
+            padding: 10px 20px;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
         }
 
         /* Location Switch Styles */
@@ -195,6 +257,15 @@
             background-color: #fff3cd;
             color: #856404;
             border: 1px solid #ffeaa7;
+        }
+
+        /* Clear buttons container */
+        .clear-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .dashboard {
@@ -356,6 +427,92 @@
             margin: 0 auto 15px;
         }
 
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 500px;
+            animation: slideInModal 0.3s ease;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .modal-header i {
+            font-size: 24px;
+            color: #dc3545;
+        }
+
+        .modal-header h3 {
+            color: #333;
+            font-size: 1.5em;
+        }
+
+        .modal-body {
+            margin-bottom: 25px;
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn-cancel {
+            background: #6c757d;
+            color: white;
+        }
+
+        .modal-btn-cancel:hover {
+            background: #5a6268;
+        }
+
+        .modal-btn-confirm {
+            background: #dc3545;
+            color: white;
+        }
+
+        .modal-btn-confirm:hover {
+            background: #c82333;
+            transform: translateY(-1px);
+        }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -374,6 +531,16 @@
             100% { transform: scale(1); background: #f8f9ff; }
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInModal {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
         .error {
             background: #f8d7da;
             color: #721c24;
@@ -390,10 +557,19 @@
             
             .input-group {
                 flex-direction: column;
+                align-items: stretch;
             }
             
             .input-group input {
                 min-width: 100%;
+            }
+
+            .input-container {
+                width: 100%;
+            }
+            
+            .input-actions {
+                margin-top: 10px;
             }
             
             .location-info {
@@ -403,6 +579,30 @@
             .switch-container {
                 flex-direction: column;
                 gap: 10px;
+            }
+
+            .clear-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .clear-buttons .btn-danger {
+                width: 200px;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+                padding: 15px;
+            }
+
+            .modal-footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .modal-btn {
+                width: 100%;
             }
         }
     </style>
@@ -417,10 +617,25 @@
         <div class="device-input">
             <h2 style="margin-bottom: 20px; color: #667eea;">Enter Device ID</h2>
             <div class="input-group">
-                <input type="text" id="deviceId" placeholder="Enter device ID..." value="">
+                <div class="input-container">
+                    <input type="text" id="deviceId" placeholder="Enter device ID..." value="" 
+                           autocomplete="off" autocapitalize="off" spellcheck="false">
+                    <div class="input-actions">
+                        <button class="btn-secondary" onclick="clearInput()">
+                            <i class="fas fa-times"></i> Clear
+                        </button>
+                        <button class="btn-secondary" onclick="pasteFromClipboard()">
+                            <i class="fas fa-paste"></i> Paste
+                        </button>
+                    </div>
+                </div>
                 <button class="btn btn-primary" onclick="loadDeviceData()">
                     <i class="fas fa-search"></i> Track Device
                 </button>
+            </div>
+            <div class="remember-section">
+                <input type="checkbox" id="rememberDevice" class="remember-checkbox">
+                <label for="rememberDevice" style="cursor: pointer;">Remember this device ID</label>
             </div>
         </div>
 
@@ -441,6 +656,16 @@
             </div>
             <div class="switch-status disabled" id="switchStatus">
                 <i class="fas fa-times-circle"></i> Location tracking is disabled
+            </div>
+            
+            <!-- Clear buttons -->
+            <div class="clear-buttons">
+                <button class="btn btn-danger" onclick="showClearModal('notifications')">
+                    <i class="fas fa-trash-alt"></i> Clear Notifications
+                </button>
+                <button class="btn btn-danger" onclick="showClearModal('locations')">
+                    <i class="fas fa-map-marked-alt"></i> Clear Locations
+                </button>
             </div>
         </div>
 
@@ -483,6 +708,27 @@
         </div>
     </div>
 
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Confirm Action</h3>
+            </div>
+            <div class="modal-body" id="modalMessage">
+                Are you sure you want to proceed?
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-cancel" onclick="closeModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="modal-btn modal-btn-confirm" id="confirmButton" onclick="confirmAction()">
+                    <i class="fas fa-check"></i> Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
@@ -498,6 +744,94 @@
         let notificationSubscription;
         let locationSubscription;
         let lastNotificationId = '';
+        let pendingAction = null; // For modal confirmation
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadSavedDeviceId();
+        });
+
+        // Save device ID to localStorage
+        function saveDeviceId(deviceId) {
+            if (document.getElementById('rememberDevice').checked) {
+                try {
+                    // Store in memory for this session
+                    window.savedDeviceId = deviceId;
+                    // Also try to store in a temporary variable that persists during session
+                    sessionStorage.setItem('deviceId', deviceId);
+                    sessionStorage.setItem('rememberDevice', 'true');
+                } catch (e) {
+                    console.log('Storage not available, using memory only');
+                    window.savedDeviceId = deviceId;
+                    window.rememberDevice = true;
+                }
+            } else {
+                clearSavedDeviceId();
+            }
+        }
+
+        // Load saved device ID
+        function loadSavedDeviceId() {
+            try {
+                const savedId = sessionStorage.getItem('deviceId') || window.savedDeviceId;
+                const shouldRemember = sessionStorage.getItem('rememberDevice') === 'true' || window.rememberDevice;
+                
+                if (savedId && shouldRemember) {
+                    document.getElementById('deviceId').value = savedId;
+                    document.getElementById('rememberDevice').checked = true;
+                }
+            } catch (e) {
+                // Fallback to memory storage
+                if (window.savedDeviceId && window.rememberDevice) {
+                    document.getElementById('deviceId').value = window.savedDeviceId;
+                    document.getElementById('rememberDevice').checked = true;
+                }
+            }
+        }
+
+        // Clear saved device ID
+        function clearSavedDeviceId() {
+            try {
+                sessionStorage.removeItem('deviceId');
+                sessionStorage.removeItem('rememberDevice');
+            } catch (e) {
+                console.log('Storage not available');
+            }
+            window.savedDeviceId = null;
+            window.rememberDevice = false;
+        }
+
+        // Clear input function
+        function clearInput() {
+            document.getElementById('deviceId').value = '';
+            document.getElementById('deviceId').focus();
+        }
+
+        // Paste from clipboard function
+        async function pasteFromClipboard() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById('deviceId').value = text.trim();
+                showNotificationStatus('Device ID pasted successfully!');
+            } catch (err) {
+                // Fallback for browsers that don't support clipboard API
+                const input = document.getElementById('deviceId');
+                input.focus();
+                input.select();
+                
+                // Try the old method
+                if (document.execCommand) {
+                    try {
+                        document.execCommand('paste');
+                        showNotificationStatus('Please paste manually (Ctrl+V or Cmd+V)');
+                    } catch (e) {
+                        showNotificationStatus('Please paste manually using your device\'s paste option', true);
+                    }
+                } else {
+                    showNotificationStatus('Please paste manually - long press in the field and select paste', true);
+                }
+            }
+        }
 
         // Initialize map
         function initMap() {
@@ -514,6 +848,9 @@
                 alert('Please enter a device ID');
                 return;
             }
+
+            // Save device ID if remember is checked
+            saveDeviceId(deviceId);
 
             currentDeviceId = deviceId;
             document.getElementById('currentDeviceId').textContent = deviceId;
@@ -624,6 +961,142 @@
             } else {
                 statusElement.className = 'switch-status disabled';
                 statusElement.innerHTML = '<i class="fas fa-times-circle"></i> Location tracking is disabled';
+            }
+        }
+
+        // Show clear confirmation modal
+        function showClearModal(type) {
+            if (!currentDeviceId) {
+                showError('Please select a device first');
+                return;
+            }
+
+            const modal = document.getElementById('confirmModal');
+            const modalMessage = document.getElementById('modalMessage');
+            const confirmButton = document.getElementById('confirmButton');
+            
+            pendingAction = type;
+            
+            if (type === 'notifications') {
+                modalMessage.innerHTML = `
+                    <strong>Are you sure you want to clear all notifications?</strong><br><br>
+                    This action will permanently delete all notification records for device: <strong>${currentDeviceId}</strong><br><br>
+                    <em>This cannot be undone!</em>
+                `;
+                confirmButton.innerHTML = '<i class="fas fa-bell-slash"></i> Clear Notifications';
+            } else if (type === 'locations') {
+                modalMessage.innerHTML = `
+                    <strong>Are you sure you want to clear all location data?</strong><br><br>
+                    This action will permanently delete all location records for device: <strong>${currentDeviceId}</strong><br><br>
+                    <em>This cannot be undone!</em>
+                `;
+                confirmButton.innerHTML = '<i class="fas fa-map-marked-alt"></i> Clear Locations';
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('confirmModal');
+            modal.style.display = 'none';
+            pendingAction = null;
+        }
+
+        // Confirm action
+        async function confirmAction() {
+            if (!pendingAction || !currentDeviceId) {
+                closeModal();
+                return;
+            }
+
+            const confirmButton = document.getElementById('confirmButton');
+            const originalContent = confirmButton.innerHTML;
+            
+            // Show loading state
+            confirmButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            confirmButton.disabled = true;
+
+            try {
+                if (pendingAction === 'notifications') {
+                    await clearNotifications();
+                } else if (pendingAction === 'locations') {
+                    await clearLocations();
+                }
+                
+                closeModal();
+            } catch (error) {
+                console.error('Error performing action:', error);
+                showError(`Failed to clear ${pendingAction}`);
+                
+                // Restore button state
+                confirmButton.innerHTML = originalContent;
+                confirmButton.disabled = false;
+            }
+        }
+
+        // Clear all notifications for current device
+        async function clearNotifications() {
+            try {
+                const { error } = await supabase
+                    .from('notifications_data')
+                    .delete()
+                    .eq('device_id', currentDeviceId);
+
+                if (error) {
+                    throw error;
+                }
+
+                // Clear the notifications container
+                const container = document.getElementById('notificationsContainer');
+                container.innerHTML = '<div class="loading">No notifications found</div>';
+                
+                // Reset last notification ID
+                lastNotificationId = '';
+                
+                showNotificationStatus('All notifications cleared successfully!');
+                
+            } catch (error) {
+                console.error('Error clearing notifications:', error);
+                throw new Error('Failed to clear notifications');
+            }
+        }
+
+        // Clear all location data for current device
+        async function clearLocations() {
+            try {
+                const { error } = await supabase
+                    .from('location_data')
+                    .delete()
+                    .eq('device_id', currentDeviceId);
+
+                if (error) {
+                    throw error;
+                }
+
+                // Reset location display
+                document.getElementById('locationStatus').innerHTML = '<i class="fas fa-map-marker-alt"></i> No location data found';
+                document.getElementById('latitude').textContent = '--';
+                document.getElementById('longitude').textContent = '--';
+                document.getElementById('accuracy').textContent = '--';
+                document.getElementById('lastUpdate').textContent = '--';
+                
+                // Clear map marker
+                if (locationMarker) {
+                    map.removeLayer(locationMarker);
+                    locationMarker = null;
+                }
+                
+                // Reset map view to default
+                if (map) {
+                    map.setView([6.9271, 79.8612], 10);
+                }
+                
+                showNotificationStatus('All location data cleared successfully!');
+                
+            } catch (error) {
+                console.error('Error clearing location data:', error);
+                throw new Error('Failed to clear location data');
             }
         }
 
@@ -869,6 +1342,21 @@
             showNotificationStatus(message, true);
         }
 
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('confirmModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Handle ESC key to close modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
         // Auto-refresh location every 30 seconds
         setInterval(() => {
             if (currentDeviceId) {
@@ -881,6 +1369,40 @@
             if (e.key === 'Enter') {
                 loadDeviceData();
             }
+        });
+
+        // Handle remember checkbox change
+        document.addEventListener('DOMContentLoaded', function() {
+            const rememberCheckbox = document.getElementById('rememberDevice');
+            const deviceIdInput = document.getElementById('deviceId');
+            
+            rememberCheckbox.addEventListener('change', function() {
+                if (this.checked && deviceIdInput.value.trim()) {
+                    saveDeviceId(deviceIdInput.value.trim());
+                } else if (!this.checked) {
+                    clearSavedDeviceId();
+                }
+            });
+
+            // Make input more mobile-friendly
+            deviceIdInput.addEventListener('focus', function() {
+                // Scroll input into view on mobile
+                setTimeout(() => {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            });
+
+            // Add double-tap to clear on mobile
+            let lastTap = 0;
+            deviceIdInput.addEventListener('touchend', function(e) {
+                const currentTime = new Date().getTime();
+                const tapLength = currentTime - lastTap;
+                if (tapLength < 500 && tapLength > 0) {
+                    this.select(); // Select all text on double tap
+                    e.preventDefault();
+                }
+                lastTap = currentTime;
+            });
         });
     </script>
 </body>
